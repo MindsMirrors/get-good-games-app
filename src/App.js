@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
+import Games from "./pages/Games";
 
 function App() {
   let darkMode = false;
@@ -34,6 +35,7 @@ function App() {
         />
         <Routes>
           <Route path="/" exact element={<Home />} />
+          <Route path="/games" exact element={<Games />} />
         </Routes>
         <Footer />
       </div>
