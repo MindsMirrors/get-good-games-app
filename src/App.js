@@ -2,6 +2,7 @@ import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import Home from "./pages/Home";
+import Footer from "./components/Footer";
 
 function App() {
   let darkMode = false;
@@ -34,6 +35,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );
