@@ -22,7 +22,6 @@ function Home() {
           </div>
         </div>
       </header>
-      Get Good Games
     </>
   )
 }

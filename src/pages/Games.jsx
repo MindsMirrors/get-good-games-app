@@ -19,7 +19,30 @@ function Games() {
           </div>
         </div>
       </div>
-      <main id="search__main"></main>
+      <main id="search__main">
+        <section>
+          <div className="container">
+            <div className="row">
+              <div className="games__header">
+                <h2>Top Results:</h2>
+                <select name="" id="filter">
+                  <option value="" disabled selected>Sort</option>
+                  <option value="ALL">ALL</option>
+                  <option value="BROWSER">Browser</option>
+                  <option value="PC">PC</option>
+                  <option value="RECENT">Most Recent</option>
+                </select>
+              </div>
+              <div className="games">
+                <FontAwesomeIcon icon="spinner" className="games__loading--spinner" />
+              </div>
+              <div className="load__btn--wrapper">
+                <button id="load__btn">Load More</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
     </>
   );
 }
