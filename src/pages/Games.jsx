@@ -25,9 +25,9 @@ function Games() {
             <div className="row">
               <div className="games__header">
                 <h2>Top Results:</h2>
-                <select name="" id="filter">
-                  <option value="" disabled selected>Sort</option>
-                  <option value="ALL">ALL</option>
+                <select name="" id="filter" defaultValue="ALL">
+                  <option value="" disabled>Sort</option>
+                  <option value="ALL">All</option>
                   <option value="BROWSER">Browser</option>
                   <option value="PC">PC</option>
                   <option value="RECENT">Most Recent</option>
