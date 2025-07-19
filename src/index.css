@@ -579,18 +579,18 @@ select {
     justify-content: center;
 }
 
-.game__title-platform {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 8px;
-    margin-top: 8px;
-}
-
 .game__title,
 .game__platform,
 .game__developer,
 .game__release-date {
     color: black;
+}
+
+.game__title-platform {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 8px;
+    margin-top: 8px;
 }
 
 .game__title,
@@ -620,6 +620,16 @@ select {
     display: flex;
     justify-content: center;
     width: 100%;
+}
+
+.game__card--skeleton {
+    margin: 16px;
+    width: 365px;
+    height: 285px;
+    background-color: rgb(233, 233, 233);
+    box-shadow: 7px 7px 14px rgba(130, 130, 130, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
 }
 
 #load__btn {
