@@ -1,25 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Platform from "./Platform";
 
 const Game = ({ game }) => {
   const [img, setImg] = useState();
 
   const mountedRef = useRef(true);
-
-  function platformsHTML(gamePlatform) {
-    if (gamePlatform === "PC (Windows)") {
-      return <FontAwesomeIcon icon={["fab", "windows"]} />;
-    } else if (gamePlatform === "Web Browser") {
-      return <FontAwesomeIcon icon="window-maximize" />;
-    } else {
-      return (
-        <>
-          <FontAwesomeIcon icon="window-maximize" /> <span> </span>{" "}
-          <FontAwesomeIcon icon={["fab", "windows"]} />
-        </>
-      );
-    }
-  }
 
   useEffect(() => {
     const image = new Image();
@@ -47,7 +33,7 @@ const Game = ({ game }) => {
             <div className="game__title-platform">
               <div className="game__title">{game.title}</div>
               <div className="game__platform">
-                {platformsHTML(game.platform)}
+                <Platform gamePlatform={game.platform}/>
               </div>
             </div>
             <div className="game__dev-release">

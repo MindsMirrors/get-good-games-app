@@ -12,11 +12,11 @@ function Games() {
     },
   };
   const gamesLoadLimitDefault = 6;
-  let gamesLoadLimit = 6;
   let currentCatagory = "";
 
+  const [allGames, setAllGames] = useState([]);
   const [games, setGames] = useState([]);
-  const [loading, setLoading] = useState();
+  let [gamesLoadLimit, setGamesLoadLimit] = useState(6);
 
   function filterGames(currentFilter) {
     if (currentFilter === "BROWSER") {
@@ -30,13 +30,23 @@ function Games() {
     }
   }
 
+  function loadMoreGames() {
+    setGamesLoadLimit(gamesLoadLimit + 6);
+    if (gamesLoadLimit > games.length) {
+      gamesLoadLimit = games.length;
+    } 
+  }
+  
   async function fetchGames(currentFilter) {
-    setLoading(true);
     const { data } = await axios.get(filterGames(currentFilter), options);
+    setAllGames(data);
     setGames(data.slice(0, gamesLoadLimit));
-    setLoading(false);
   }
 
+  useEffect(() => {
+    setGames(allGames.slice(0, gamesLoadLimit));
+  }, [gamesLoadLimit]);
+  
   useEffect(() => {
     fetchGames();
   }, []);
@@ -91,7 +101,7 @@ function Games() {
                 </div>
               </div>
               <div className="load__btn--wrapper">
-                <button id="load__btn">Load More</button>
+                <button id="load__btn" onClick={() => loadMoreGames()}>Load More</button>
               </div>
             </div>
           </div>
