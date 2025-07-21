@@ -11,12 +11,12 @@ function Games() {
       "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com",
     },
   };
-  const gamesLoadLimitDefault = 6;
+  const loadLimitDefault = 6;
   let currentCatagory = "";
 
   const [allGames, setAllGames] = useState([]);
   const [games, setGames] = useState([]);
-  let [gamesLoadLimit, setGamesLoadLimit] = useState(6);
+  let [loadLimit, setLoadLimit] = useState(0);
 
   function filterGames(currentFilter) {
     if (currentFilter === "BROWSER") {
@@ -30,30 +30,31 @@ function Games() {
     }
   }
 
-  function loadMoreGames() {
-    setGamesLoadLimit(gamesLoadLimit + 6);
-    if (gamesLoadLimit > games.length) {
-      gamesLoadLimit = games.length;
-    } 
+  function loadGames(loadMoreGames) {
+    if (loadMoreGames) {
+      setLoadLimit(loadLimit => loadLimit + 6);
+      if (loadLimit > games.length) {
+        setLoadLimit(games.length);
+      } 
+    } else {
+      setLoadLimit(loadLimitDefault);
+    }
   }
   
-  async function fetchGames(currentFilter) {
+  async function fetchGames(currentFilter,resetLoadLimit) {
+    if (resetLoadLimit) {setLoadLimit(loadLimitDefault)}
     const { data } = await axios.get(filterGames(currentFilter), options);
     setAllGames(data);
-    setGames(data.slice(0, gamesLoadLimit));
+    loadGames(false);
   }
 
-  useEffect(() => {
-    setGames(allGames.slice(0, gamesLoadLimit));
-  }, [gamesLoadLimit]);
-  
   useEffect(() => {
     fetchGames();
   }, []);
 
   useEffect(() => {
-    console.log(games);
-  }, [games]);
+    setGames(allGames.slice(0, loadLimit));
+  }, [loadLimit,allGames]);
 
   return (
     <>
@@ -82,7 +83,7 @@ function Games() {
                   name=""
                   id="filter"
                   defaultValue="ALL"
-                  onChange={(event) => fetchGames(event.target.value)}
+                  onChange={(event) => fetchGames(event.target.value,true)}
                 >
                   <option value="" disabled>
                     Sort
@@ -101,7 +102,7 @@ function Games() {
                 </div>
               </div>
               <div className="load__btn--wrapper">
-                <button id="load__btn" onClick={() => loadMoreGames()}>Load More</button>
+                <button id="load__btn" onClick={() => loadGames(true)}>Load More</button>
               </div>
             </div>
           </div>
