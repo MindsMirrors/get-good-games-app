@@ -15,7 +15,9 @@ function Games() {
   let currentCatagory = "";
 
   const [allGames, setAllGames] = useState([]);
-  const [games, setGames] = useState([]);
+  const [games, setGames] = useState(
+    new Array(6).fill(0).map((_, index) => ({ id: index }))
+  );
   let [loadLimit, setLoadLimit] = useState(0);
 
   function filterGames(currentFilter) {
@@ -30,19 +32,34 @@ function Games() {
     }
   }
 
+  function filterGamesByName() {
+    const inputValue = document
+      .getElementById("input__area")
+      .value.trim()
+      .toLowerCase();
+    if (inputValue) {
+      games.filter((game) =>
+        game.title.toLowerCase().includes(inputValue)
+      );
+      loadGames()
+    }
+  }
+
   function loadGames(loadMoreGames) {
     if (loadMoreGames) {
-      setLoadLimit(loadLimit => loadLimit + 6);
+      setLoadLimit((loadLimit) => loadLimit + 6);
       if (loadLimit > games.length) {
         setLoadLimit(games.length);
-      } 
+      }
     } else {
       setLoadLimit(loadLimitDefault);
     }
   }
-  
-  async function fetchGames(currentFilter,resetLoadLimit) {
-    if (resetLoadLimit) {setLoadLimit(loadLimitDefault)}
+
+  async function fetchGames(currentFilter, resetLoadLimit) {
+    if (resetLoadLimit) {
+      setLoadLimit(loadLimitDefault);
+    }
     const { data } = await axios.get(filterGames(currentFilter), options);
     setAllGames(data);
     loadGames(false);
@@ -54,7 +71,7 @@ function Games() {
 
   useEffect(() => {
     setGames(allGames.slice(0, loadLimit));
-  }, [loadLimit,allGames]);
+  }, [loadLimit, allGames]);
 
   return (
     <>
@@ -66,8 +83,11 @@ function Games() {
               type="text"
               id="input__area"
               placeholder="Search Games by Title"
+              onKeyPress={(event) =>
+                event.key === "Enter" && filterGamesByName()
+              }
             />
-            <button className="input__btn">
+            <button className="input__btn" onClick={() => filterGamesByName()}>
               <FontAwesomeIcon icon="magnifying-glass" />
             </button>
           </div>
@@ -83,7 +103,7 @@ function Games() {
                   name=""
                   id="filter"
                   defaultValue="ALL"
-                  onChange={(event) => fetchGames(event.target.value,true)}
+                  onChange={(event) => fetchGames(event.target.value, true)}
                 >
                   <option value="" disabled>
                     Sort
@@ -102,7 +122,9 @@ function Games() {
                 </div>
               </div>
               <div className="load__btn--wrapper">
-                <button id="load__btn" onClick={() => loadGames(true)}>Load More</button>
+                <button id="load__btn" onClick={() => loadGames(true)}>
+                  Load More
+                </button>
               </div>
             </div>
           </div>
