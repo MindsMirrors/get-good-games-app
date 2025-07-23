@@ -15,7 +15,7 @@ const Game = ({ game }) => {
         if (mountedRef.current) {
           setImg(image);
         }
-      }, 500);
+      }, 1000);
     };
     return () => {
       mountedRef.current = false;

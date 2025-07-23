@@ -32,26 +32,40 @@ function Games() {
     }
   }
 
+  function loadButton(activateButton) {
+    if (activateButton) {
+      if (document.getElementById('load__btn').hasAttribute('disabled')) {
+        document.getElementById('load__btn').removeAttribute('disabled');
+      }
+    } else {
+      document.getElementById('load__btn').setAttribute('disabled',"");
+    }
+  }
+
   function filterGamesByName() {
     const inputValue = document
       .getElementById("input__area")
       .value.trim()
       .toLowerCase();
     if (inputValue) {
-      games.filter((game) =>
-        game.title.toLowerCase().includes(inputValue)
-      );
-      loadGames()
+      console.log(inputValue);
+      setGames(games.filter((game) => game.title.toLowerCase().includes(inputValue)));
+      loadGames(false);
+      loadButton(false);
     }
   }
 
   function loadGames(loadMoreGames) {
     if (loadMoreGames) {
-      setLoadLimit((loadLimit) => loadLimit + 6);
-      if (loadLimit > games.length) {
-        setLoadLimit(games.length);
+      if (loadLimit+6 >= allGames.length) {
+        setLoadLimit(allGames.length);
+        loadButton(false);
+      } else {
+        setLoadLimit((loadLimit) => loadLimit + 6);
+        loadButton(true);
       }
     } else {
+      loadButton(true);
       setLoadLimit(loadLimitDefault);
     }
   }
@@ -71,6 +85,7 @@ function Games() {
 
   useEffect(() => {
     setGames(allGames.slice(0, loadLimit));
+    console.log('games:'+games.length+" || allGames:"+allGames.length+" || loadLimit:"+loadLimit)
   }, [loadLimit, allGames]);
 
   return (
