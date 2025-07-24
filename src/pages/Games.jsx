@@ -32,32 +32,26 @@ function Games() {
     }
   }
 
-  function loadButton(activateButton) {
-    if (activateButton) {
-      if (document.getElementById('load__btn').hasAttribute('disabled')) {
-        document.getElementById('load__btn').removeAttribute('disabled');
-      }
-    } else {
-      document.getElementById('load__btn').setAttribute('disabled',"");
-    }
-  }
-
   function filterGamesByName() {
     const inputValue = document
       .getElementById("input__area")
       .value.trim()
       .toLowerCase();
     if (inputValue) {
-      console.log(inputValue);
-      setGames(games.filter((game) => game.title.toLowerCase().includes(inputValue)));
+      setGames(
+        allGames.filter((game) => game.title.toLowerCase().includes(inputValue))
+      );
       loadGames(false);
       loadButton(false);
+    } else {
+      loadButton(true);
+      setGames(allGames.slice(0, loadLimit));
     }
   }
 
   function loadGames(loadMoreGames) {
     if (loadMoreGames) {
-      if (loadLimit+6 >= allGames.length) {
+      if (loadLimit + 6 >= allGames.length) {
         setLoadLimit(allGames.length);
         loadButton(false);
       } else {
@@ -70,12 +64,23 @@ function Games() {
     }
   }
 
+  function loadButton(activateButton) {
+    if (activateButton) {
+      if (document.getElementById("load__btn").hasAttribute("disabled")) {
+        document.getElementById("load__btn").removeAttribute("disabled");
+      }
+    } else {
+      document.getElementById("load__btn").setAttribute("disabled", "");
+    }
+  }
+
   async function fetchGames(currentFilter, resetLoadLimit) {
     if (resetLoadLimit) {
       setLoadLimit(loadLimitDefault);
     }
     const { data } = await axios.get(filterGames(currentFilter), options);
     setAllGames(data);
+    filterGamesByName();
     loadGames(false);
   }
 
@@ -84,8 +89,7 @@ function Games() {
   }, []);
 
   useEffect(() => {
-    setGames(allGames.slice(0, loadLimit));
-    console.log('games:'+games.length+" || allGames:"+allGames.length+" || loadLimit:"+loadLimit)
+    filterGamesByName();
   }, [loadLimit, allGames]);
 
   return (
@@ -98,7 +102,7 @@ function Games() {
               type="text"
               id="input__area"
               placeholder="Search Games by Title"
-              onKeyPress={(event) =>
+              onKeyDown={(event) =>
                 event.key === "Enter" && filterGamesByName()
               }
             />
