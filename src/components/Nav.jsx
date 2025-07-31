@@ -23,6 +23,11 @@ function Nav({ toggleContrast, openMenu, closeMenu }) {
               </Link>
             </li>
             <li>
+              <Link to="/games" className="nav__link nav__link--hover-effect">
+                Games
+              </Link>
+            </li>
+            <li>
               <Link
                 to="/"
                 className="nav__link nav__link--hover-effect no-cursor"
@@ -56,6 +61,11 @@ function Nav({ toggleContrast, openMenu, closeMenu }) {
               <li className="menu__list">
                 <Link to="/" className="menu__link" onClick={() => closeMenu()}>
                   Home
+                </Link>
+              </li>
+              <li className="menu__list">
+                <Link to="/games" className="menu__link" onClick={() => closeMenu()}>
+                  Games
                 </Link>
               </li>
               <li className="menu__list">

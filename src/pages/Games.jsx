@@ -77,7 +77,7 @@ function Games({
                   {games.length > 0 ? (
                     games.map((game) => <Game game={game} key={game.id} />)
                   ) : (
-                    <h3 class="no-game"> No Games Found </h3>
+                    <h3 className="no-game"> No Games Found </h3>
                   )}
                 </div>
               </div>
