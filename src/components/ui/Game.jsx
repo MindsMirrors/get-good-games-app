@@ -15,12 +15,12 @@ const Game = ({ game }) => {
         if (mountedRef.current) {
           setImg(image);
         }
-      }, 1000);
+      }, 500);
     };
     return () => {
       mountedRef.current = false;
     };
-  });
+  },[]);
 
   return (
     <>
