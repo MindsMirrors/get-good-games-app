@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Platform from "./Platform";
+import { useNavigate } from "react-router-dom";
 
 const Game = ({ game }) => {
+  let navigate = useNavigate();
   const [img, setImg] = useState();
 
   const mountedRef = useRef(true);
@@ -26,7 +28,7 @@ const Game = ({ game }) => {
     <>
       {img ? (
         <>
-          <div className="game game__click">
+          <div className="game game__click" key={game.id} onClick={() => navigate(`${game.id}`)}>
             <figure className="game__img--wrapper">
               <img className="game__img" src={img.src} alt="" />
             </figure>

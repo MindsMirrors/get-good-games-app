@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Games from "./pages/Games";
 import axios from "axios";
 import { useState } from "react";
+import GameInfo from "./pages/GameInfo";
 
 function App() {
   const options = {
@@ -168,6 +169,13 @@ function App() {
                 loading={loading}
                 searchGames={searchGames}
               />
+            }
+          />
+          <Route
+            path="games/:id"
+            exact
+            element={
+              <GameInfo options={options} />
             }
           />
         </Routes>
