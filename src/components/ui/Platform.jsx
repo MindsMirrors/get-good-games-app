@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Platform = ({ gamePlatform }) => {
-  if (gamePlatform === "PC (Windows)") {
+  if (gamePlatform === "PC (Windows)" || gamePlatform === "Windows") {
     return <FontAwesomeIcon icon={["fab", "windows"]} />;
   } else if (gamePlatform === "Web Browser") {
     return <FontAwesomeIcon icon="window-maximize" />;
