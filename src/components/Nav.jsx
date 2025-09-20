@@ -12,7 +12,7 @@ function Nav({ toggleContrast, openMenu, closeMenu }) {
             <Link to="/" className="nav__link">
               <FontAwesomeIcon className="nav__logo" icon="ghost" />
               <h1 className="nav__logo-text">
-                Get <span className="highlight__logo">Good</span> <br /> Games{" "}
+                Get <span className="highlight__logo">Good</span> Games{" "}
               </h1>
             </Link>
           </div>
@@ -64,7 +64,11 @@ function Nav({ toggleContrast, openMenu, closeMenu }) {
                 </Link>
               </li>
               <li className="menu__list">
-                <Link to="/games" className="menu__link" onClick={() => closeMenu()}>
+                <Link
+                  to="/games"
+                  className="menu__link"
+                  onClick={() => closeMenu()}
+                >
                   Games
                 </Link>
               </li>
@@ -96,15 +100,15 @@ function Nav({ toggleContrast, openMenu, closeMenu }) {
             </ul>
           </div>
         </div>
-      </nav>
-      <div className="sponsor">
-        <p className="sponsor__title">Powered by</p>
-        <div className="sponsor__logo">
-          <a href="https://www.freetogame.com/" target="blank">
-            <img src={SponsorLogo} alt="" className="sponsor__logo--img" />
-          </a>
+        <div className="sponsor">
+          <p className="sponsor__title">Powered by:</p>
+          <div className="sponsor__logo">
+            <a href="https://www.freetogame.com/" target="blank">
+              <img src={SponsorLogo} alt="" className="sponsor__logo--img" />
+            </a>
+          </div>
         </div>
-      </div>
+      </nav>
     </>
   );
 }
