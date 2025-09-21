@@ -4,11 +4,12 @@ import { Link, useParams } from "react-router-dom";
 import Platform from "../components/ui/Platform";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Requirements from "../components/ui/Requirements";
+import Screenshots from "../components/ui/Screenshots";
 
 function GameInfo({ options }) {
   const { id } = useParams();
   const [gameInfo, setGameInfo] = useState([]);
-  const [loadingInfo, setLoadingInfo] = useState();
+  const [loadingInfo, setLoadingInfo] = useState(true);
 
   async function fetchGameInfo() {
     setLoadingInfo(true);
@@ -30,9 +31,18 @@ function GameInfo({ options }) {
           <div className="game__profile">
             <div className="game__profile--left">
               <div className="game__profile--sidebar">
-                <figure className="game__thumbnail">
-                  <img src={gameInfo.thumbnail} alt="" />
-                </figure>
+                {loadingInfo ? (
+                  <div className="game__card--skeleton"></div>
+                ) : (
+                  <figure>
+                    <img
+                      className="game__thumbnail"
+                      src={gameInfo.thumbnail}
+                      alt=""
+                    />
+                  </figure>
+                )}
+
                 <a
                   className="play-game__button"
                   href={gameInfo.game_url}
@@ -67,8 +77,9 @@ function GameInfo({ options }) {
                   <div className="profile__info--title"> DEVELOPER: </div>
                   <div className="profile__info--title"> PUBLISHER: </div>
                   <div className="profile__info--title"> GENRE: </div>
+                  <div className="profile__info--title"> PLATFORM: </div>
                 </div>
-                <div className="profile__info--left">
+                <div className="profile__info">
                   <div className="profile__info--content">
                     {gameInfo.release_date}
                   </div>
@@ -79,16 +90,18 @@ function GameInfo({ options }) {
                     {gameInfo.publisher}
                   </div>
                   <div className="profile__info--content">{gameInfo.genre}</div>
+                  <div className="profile__info--content">
+                    {gameInfo.platform}
+                  </div>
                 </div>
               </div>
-              <figure>
-                {/* <img className="game-info__screenshot--img" src={gameInfo.screenshots[0].image} alt="" /> */}
-                {/* <img src={gameInfo.screenshots[1].image} alt="" /> */}
-                {/* <img src={gameInfo.screenshots[2].image} alt="" /> */}
-              </figure>
+              <div className="game-info__section--title">
+                About {gameInfo.title}:
+              </div>
               <div className="game-info__description--long">
                 {gameInfo.description}
               </div>
+              <Screenshots gameInfo={gameInfo} loadingInfo={loadingInfo} />
               <Requirements gameInfo={gameInfo} />
             </div>
           </div>

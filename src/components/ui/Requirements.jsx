@@ -4,7 +4,7 @@ const Requirements = ({ gameInfo }) => {
   if (gameInfo.platform === "PC (Windows)" || gameInfo.platform === "Windows") {
     return (
       <>
-        <div className="system_requirements">Minimum System Requirements</div>
+        <div className="game-info__section--title">Minimum System Requirements:</div>
         <div className="row">
           <div className="system__coloumn">
             <div className="system__column--item">
@@ -44,7 +44,7 @@ const Requirements = ({ gameInfo }) => {
   } else {
     return (
       <>
-        <div className="system_requirements">Minimum System Requirements</div>
+        <div className="game-info__section--title">Minimum System Requirements:</div>
         <div className="system__column--title">
           {gameInfo.title} is a browser based game and should run smoothly on
           any PC with an updated web-browser
