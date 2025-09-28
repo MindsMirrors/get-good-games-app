@@ -1,25 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
 
 const Screenshots = ({ gameInfo, loadingInfo }) => {
-  const [img, setImg] = useState();
-
-  const mountedRef = useRef(true);
-
-  //   useEffect(() => {
-  //     const image = new Image();
-  //     image.src = gameInfo.screenshots[0].image;
-  //     image.onload = () => {
-  //       setTimeout(() => {
-  //         if (mountedRef.current) {
-  //           setImg(image);
-  //         }
-  //       }, 500);
-  //     };
-  //     return () => {
-  //       mountedRef.current = false;
-  //     };
-  //   }, []);
-
   return (
     <>
       {loadingInfo ? (

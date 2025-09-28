@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Game from "../components/ui/Game";
 
 function Games({
@@ -18,7 +17,7 @@ function Games({
   loadLimit,
   setInputValue,
   inputValue,
-  setloading,
+  setLoading,
   loading,
   searchGames,
 }) {
@@ -31,7 +30,13 @@ function Games({
 
   useEffect(() => {
     filterGamesByName();
-  }, [loadLimit, allGames, inputValue]);
+  }, [loadLimit, allGames, inputValue ]);
+
+  useEffect(() => {
+      if (loading) {
+        setLoading(false);
+      }
+    }, [games, loading]);
 
   return (
     <>
@@ -73,13 +78,27 @@ function Games({
                 </select>
               </div>
               <div className="games">
-                <div className="games">
-                  {games.length > 0 ? (
-                    games.map((game) => <Game game={game} key={game.id} />)
-                  ) : (
-                    <h3 className="no-game"> No Games Found </h3>
-                  )}
-                </div>
+                {loading ? (
+                  <>
+                    {games.length > 0 ? (
+                      <>
+                        {new Array(6).join(
+                          <div className="game__card--skeleton"></div>
+                        )}
+                      </>
+                    ) : (
+                      <h3 className="no-game"> No Games Found </h3>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {games.length > 0 ? (
+                      games.map((game) => <Game game={game} key={game.id} />)
+                    ) : (
+                      <h3 className="no-game"> No Games Found </h3>
+                    )}
+                  </>
+                )}
               </div>
               <div className="load__btn--wrapper">
                 <button id="load__btn" onClick={() => loadGames(true)}>

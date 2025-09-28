@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Platform from "./Platform";
 import { useNavigate } from "react-router-dom";
 

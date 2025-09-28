@@ -113,7 +113,7 @@ function App() {
   }
 
   return (
-    <Router>
+    <Router basename="/get-good-games-app">
       <div className="App">
         <Nav
           toggleContrast={toggleContrast}
