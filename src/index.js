@@ -12,9 +12,7 @@ library.add(fab, faGhost, faCircleHalfStroke, faBars, faXmark, faMagnifyingGlass
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Router basename="/get-good-games-app">
-        <App />
-    </Router>
+    <App />
 );
 
 // If you want to start measuring performance in your app, pass a function
