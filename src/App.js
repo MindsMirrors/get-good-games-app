@@ -1,5 +1,5 @@
 import "./index.css";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
@@ -113,7 +113,7 @@ function App() {
   }
 
   return (
-    <Router basename="/get-good-games-app">
+    <Router basename="">
       <div className="App">
         <Nav
           toggleContrast={toggleContrast}
