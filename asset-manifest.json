@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/get-good-games-app/static/css/main.f0dbc290.css",
+    "main.js": "/get-good-games-app/static/js/main.9b9e1e9c.js",
+    "static/js/453.8748eca4.chunk.js": "/get-good-games-app/static/js/453.8748eca4.chunk.js",
+    "static/media/undraw_gaming_v7a6 (1).svg": "/get-good-games-app/static/media/undraw_gaming_v7a6 (1).06b3b2e934beb9951c3f8e26b69a4eb2.svg",
+    "index.html": "/get-good-games-app/index.html",
+    "main.f0dbc290.css.map": "/get-good-games-app/static/css/main.f0dbc290.css.map",
+    "main.9b9e1e9c.js.map": "/get-good-games-app/static/js/main.9b9e1e9c.js.map",
+    "453.8748eca4.chunk.js.map": "/get-good-games-app/static/js/453.8748eca4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f0dbc290.css",
+    "static/js/main.9b9e1e9c.js"
+  ]
+}
