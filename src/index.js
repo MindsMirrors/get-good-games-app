@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router} from "react-router-dom";
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -11,7 +12,9 @@ library.add(fab, faGhost, faCircleHalfStroke, faBars, faXmark, faMagnifyingGlass
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <App />
+    <Router basename="/get-good-games-app">
+        <App />
+    </Router>
 );
 
 // If you want to start measuring performance in your app, pass a function
