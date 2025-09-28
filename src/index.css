@@ -950,11 +950,24 @@ select {
   }
 
   .header__container {
-    padding: 40px 20px;
+    padding: 10rem 40px 20px;
+  }
+
+  .search__container {
+    padding-top: 10rem;
+  }
+
+  .game-info__container {
+    padding-top: 10rem;
   }
 
   .header__img {
     display: none;
+  }
+
+  .game__img {
+    width: 100%;
+    height: auto;
   }
 
   .input__wrapper {
