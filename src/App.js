@@ -37,6 +37,7 @@ function App() {
 
   function openMenu() {
     document.body.classList += " menu--open";
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
   }
 
   function closeMenu() {
